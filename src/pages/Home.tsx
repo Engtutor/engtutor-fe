@@ -2,6 +2,9 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Button } from "@/components/ui/button"
 
 export const Home = () => {
+
+
+
     return (
         <Card className="w-full max-w-md mx-auto mt-20 shadow-lg">
             <CardHeader>
