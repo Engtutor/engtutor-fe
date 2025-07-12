@@ -32,5 +32,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist  # 빌드 결과물 폴더 (React는 보통 build)
+          publish_dir: ./dist
 
