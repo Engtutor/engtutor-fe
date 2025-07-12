@@ -8,7 +8,7 @@ import { store } from "./redux/store";
 const App = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter><AppRoutes /></BrowserRouter>
+      <BrowserRouter basename="/engtutor/" ><AppRoutes /></BrowserRouter>
     </Provider>
   )
 }
