@@ -9,7 +9,6 @@ on:
 
 jobs:
   deploy:
-    if: github.event.inputs.confirm == 'deploy'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
@@ -17,6 +16,25 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+      
+      - name: Validate version format and tag existence
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+
+          # Check version format: major.minor.patch (e.g., 1.2.3)
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Invalid version format: '$VERSION'. Use semantic versioning (e.g. 1.2.3)."
+            exit 1
+          fi
+
+          # Check if the tag already exists
+          if git rev-parse "v$VERSION" >/dev/null 2>&1; then
+            echo "Tag 'v$VERSION' already exists. Please use a new version."
+            exit 1
+          fi
+
+          echo "Version '$VERSION' is valid and not tagged yet."
+
 
       - name: Setup Node
         uses: actions/setup-node@v4
