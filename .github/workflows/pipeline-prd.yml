@@ -22,10 +22,15 @@ jobs:
         with:
           node-version: '18'
 
-      - run: npm ci
-      - run: npm run build
+      - name: Install dependencies with Yarn
+        run: yarn install
 
-      - name: Deploy to Prod
-        run: ./scripts/deploy-prod.sh
-        env:
-          PROD_DEPLOY_KEY: ${{ secrets.PROD_DEPLOY_KEY }}
+      - name: Build the app
+        run: yarn build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist  # 빌드 결과물 폴더 (React는 보통 build)
+
