@@ -16,7 +16,7 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-      
+
       - name: Validate version format and tag existence
         run: |
           VERSION="${{ github.event.inputs.version }}"
@@ -35,11 +35,10 @@ jobs:
 
           echo "Version '$VERSION' is valid and not tagged yet."
 
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install dependencies with Yarn
         run: yarn install
@@ -59,4 +58,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-
