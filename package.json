@@ -6,7 +6,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "preview": "vite preview",
     "prepare": "husky",
     "generate-ui": "yarn shadcn add button && yarn shadcn add card"
@@ -52,8 +52,11 @@
     "vite": "^7.0.0"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "eslint --fix",
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write ",
+      "eslint --fix"
+    ],
+    "*.json": [
       "prettier --write"
     ]
   }
