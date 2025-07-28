@@ -7,7 +7,7 @@ export const api = createApi({
   baseQuery: baseQueryWithAuth,
   endpoints: (builder) => ({
     getUser: builder.query<User[], void>({
-      query: () => "user", //  endpoint: GET /user
+      query: () => "user",
     }),
     updateUser: builder.mutation<User, Partial<User>>({
       query: (user) => ({

@@ -1,24 +1,32 @@
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useUpdateUserMutation } from "@/redux/user/api";
 
 export const Home = () => {
+  const [updateUser] = useUpdateUserMutation();
+  const { user, signOut } = useAuthenticator();
+
+  const testcall = async () => {
+    await updateUser({
+      id: "123",
+      name: "Updated User",
+      email: "updated@example.com",
+    });
+  };
+
   return (
     <Card className="w-full max-w-md mx-auto mt-20 shadow-lg">
       <CardHeader>
-        <CardTitle>Welcome</CardTitle>
-        <CardDescription>
-          Start building your app with Shadcn UI
-        </CardDescription>
+        <CardTitle>Hello, {user?.username}</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <Button>Get Started</Button>
-        <Button variant="outline">Learn More</Button>
+      <CardContent>
+        <Button variant="outline" onClick={signOut} className="w-full">
+          Sign out
+        </Button>
+        <Button variant="outline" onClick={testcall} className="w-full">
+          test call
+        </Button>
       </CardContent>
     </Card>
   );
