@@ -1,30 +1,23 @@
+import "./amplifyConfig";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./routes";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import { Amplify } from "aws-amplify";
-import {
-  COGNITO_USER_POOL_CLIENT_ID,
-  COGNITO_USER_POOL_ID,
-} from "./lib/constant";
-
-Amplify.configure({
-  Auth: {
-    Cognito: {
-      userPoolId: COGNITO_USER_POOL_ID,
-      userPoolClientId: COGNITO_USER_POOL_CLIENT_ID,
-    },
-  },
-});
+import { Authenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-    </Provider>
+    <Authenticator variation="modal">
+      {({ user }) => (
+        <Provider store={store}>
+          <BrowserRouter>
+            <AppRoutes user={user} />
+          </BrowserRouter>
+        </Provider>
+      )}
+    </Authenticator>
   );
 };
 
