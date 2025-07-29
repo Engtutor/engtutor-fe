@@ -9,6 +9,7 @@ on:
 
 jobs:
   deploy:
+    name:  Deploy v${{ github.event.inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
