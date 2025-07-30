@@ -7,10 +7,10 @@ on:
         description: "Semantic version (e.g. 1.2.3)"
         required: true
 
-run-name: Deploy v${{ github.event.inputs.version }}
-
 permissions:
   contents: write 
+
+run-name: Deploy v${{ github.event.inputs.version }}
 
 jobs:
   deploy:
