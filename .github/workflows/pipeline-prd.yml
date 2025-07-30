@@ -7,6 +7,9 @@ on:
         description: "Semantic version (e.g. 1.2.3)"
         required: true
 
+permissions:
+  contents: write 
+
 jobs:
   deploy:
     name:  Deploy v${{ github.event.inputs.version }}
