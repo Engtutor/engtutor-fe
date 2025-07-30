@@ -1,5 +1,4 @@
 name: Deploy to Production 
-run-name: Deploy v${{ github.event.inputs.version }}
 
 on:
   workflow_dispatch:
@@ -7,6 +6,8 @@ on:
       version:
         description: "Semantic version (e.g. 1.2.3)"
         required: true
+
+run-name: Deploy v${{ github.event.inputs.version }}
 
 permissions:
   contents: write 
