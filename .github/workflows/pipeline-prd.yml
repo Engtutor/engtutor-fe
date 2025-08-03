@@ -10,8 +10,6 @@ on:
 permissions:
   contents: write 
 
-run-name: Deploy v${{ github.event.inputs.version }}
-
 jobs:
   deploy:
     name:  Deploy v${{ github.event.inputs.version }}
